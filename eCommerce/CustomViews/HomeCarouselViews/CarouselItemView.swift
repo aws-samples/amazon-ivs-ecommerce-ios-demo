@@ -26,9 +26,15 @@ class CarouselItemView: UIView {
         previewImageView.image = previewImage
         avatarImageView.image = avatarImage
         self.delegate = delegate
-
         previewImageView.layer.cornerRadius = 10
-        liveLabel.layer.cornerRadius = 8
+        avatarImageView.isHidden = avatarImage == nil
+        liveLabel.isHidden = avatarImageView.isHidden
+
+        if let avatarImage = avatarImage {
+            avatarImageView.image = avatarImage
+            liveLabel.layer.cornerRadius = 8
+        }
+
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
     }
 

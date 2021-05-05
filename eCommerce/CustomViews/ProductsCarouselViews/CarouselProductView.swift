@@ -46,7 +46,7 @@ class CarouselProductView: UIView {
 
     // MARK: Custom Actions
 
-    let imagesBaseUrlString = "https://assets.codepen.io/2960061"
+    let imagesBaseUrlString = "https://d39ii5l128t5ul.cloudfront.net/assets/ecommerce"
     var product: Product?
 
     func setup(_ product: Product, _ delegate: CarouselProductItemDelegate?) {
