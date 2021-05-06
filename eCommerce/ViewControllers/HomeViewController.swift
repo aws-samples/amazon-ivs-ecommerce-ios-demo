@@ -23,9 +23,9 @@ class HomeViewController: UIViewController {
 
     // MARK: IBOutlet
 
-    @IBOutlet var countDownLabel: UILabel!
     @IBOutlet var streamsCarouselStackView: CarouselStackView!
     @IBOutlet var streamsScrollView: UIScrollView!
+    @IBOutlet var countdownStackView: CountdownStackView!
 
     // MARK: View Lifecycle
 
@@ -89,7 +89,8 @@ class HomeViewController: UIViewController {
         let diff = calendar.dateComponents([.hour, .minute, .second], from: now, to: next)
 
         DispatchQueue.main.async {
-            self.countDownLabel.text = self.formatter.string(from: diff)
+            guard let timeString = self.formatter.string(from: diff) else { return }
+            self.countdownStackView.setupTime(from: timeString)
         }
     }
 
@@ -99,11 +100,11 @@ class HomeViewController: UIViewController {
         streamsCarouselStackView.addStreamItem(previewImageName: "live_carousel_image_1",
                                                avatarImageName: "avatar_1", delegate: self)
         streamsCarouselStackView.addStreamItem(previewImageName: "live_carousel_image_2",
-                                               avatarImageName: "avatar_2", delegate: self)
+                                               delegate: self)
         streamsCarouselStackView.addStreamItem(previewImageName: "live_carousel_image_3",
-                                               avatarImageName: "avatar_3", delegate: self)
+                                               delegate: self)
         streamsCarouselStackView.addStreamItem(previewImageName: "live_carousel_image_4",
-                                               avatarImageName: "avatar_4", delegate: self)
+                                               delegate: self)
     }
 }
 

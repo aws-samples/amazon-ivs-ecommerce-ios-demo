@@ -18,10 +18,11 @@ class CarouselStackView: UIStackView {
         }
     }
 
-    func addStreamItem(previewImageName: String, avatarImageName: String, delegate: CarouselItemDelegate?){
+    func addStreamItem(previewImageName: String, avatarImageName: String? = nil, delegate: CarouselItemDelegate?){
         if let nibView = Bundle.main.loadNibNamed("CarouselItem", owner: self, options: nil)?.first as? CarouselItemView {
             addArrangedSubview(nibView)
-            nibView.setup(previewImage: UIImage(named: previewImageName), avatarImage: UIImage(named: avatarImageName), delegate: delegate)
+            let avatarImage = avatarImageName != nil ? UIImage(named: avatarImageName!) : nil
+            nibView.setup(previewImage: UIImage(named: previewImageName), avatarImage: avatarImage, delegate: delegate)
         }
     }
 

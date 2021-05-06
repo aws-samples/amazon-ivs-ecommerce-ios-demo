@@ -26,6 +26,7 @@
 		46B18B752488FB8700BA0AF0 /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18B742488FB8700BA0AF0 /* WatchViewController.swift */; };
 		46B18B77248E262C00BA0AF0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18B76248E262C00BA0AF0 /* Product.swift */; };
 		46B18B7A248E29CC00BA0AF0 /* Purchaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18B79248E29CC00BA0AF0 /* Purchaser.swift */; };
+		5C0D00E12638139800647DEC /* CountdownViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D00E02638139800647DEC /* CountdownViews.swift */; };
 		E29B5C62A0CC8F1F22C7E1DE /* libPods-eCommerce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0604796E9C72975B9EAC568 /* libPods-eCommerce.a */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +54,9 @@
 		46B18B742488FB8700BA0AF0 /* WatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		46B18B76248E262C00BA0AF0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		46B18B79248E29CC00BA0AF0 /* Purchaser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchaser.swift; sourceTree = "<group>"; };
-		77B6A9BA9BE03B89EBC75B09 /* Pods-eCommerce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.debug.xcconfig"; path = "../Amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.debug.xcconfig"; sourceTree = "<group>"; };
-		83D51A534FF3FC792E25D0BC /* Pods-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.release.xcconfig"; path = "../Amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
+		5C0D00E02638139800647DEC /* CountdownViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViews.swift; sourceTree = "<group>"; };
+		77B6A9BA9BE03B89EBC75B09 /* Pods-eCommerce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.debug.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo-main/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.debug.xcconfig"; sourceTree = "<group>"; };
+		83D51A534FF3FC792E25D0BC /* Pods-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.release.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo-main/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
 		B0604796E9C72975B9EAC568 /* libPods-eCommerce.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eCommerce.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5D00185D8E188697B92D43 /* Pods-IVSClients-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVSClients-eCommerce.release.xcconfig"; path = "../eCommerce/Pods/Target Support Files/Pods-IVSClients-eCommerce/Pods-IVSClients-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				467629BB24868483009A275F /* CarouselStackView.swift */,
+				5C0D00E02638139800647DEC /* CountdownViews.swift */,
 				46F1BA192488F82D00128329 /* HomeCarouselViews */,
 				4674B01C248E317B0047FD37 /* ProductsCarouselViews */,
 			);
@@ -315,6 +318,7 @@
 				467629B82486729E009A275F /* CarouselItemView.swift in Sources */,
 				4664E33F2481198C00B75A8B /* AppDelegate.swift in Sources */,
 				4674B022248E31F50047FD37 /* CarouselProductView.swift in Sources */,
+				5C0D00E12638139800647DEC /* CountdownViews.swift in Sources */,
 				46B18B77248E262C00BA0AF0 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
