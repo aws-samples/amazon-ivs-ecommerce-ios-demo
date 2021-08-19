@@ -55,8 +55,8 @@
 		46B18B76248E262C00BA0AF0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		46B18B79248E29CC00BA0AF0 /* Purchaser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchaser.swift; sourceTree = "<group>"; };
 		5C0D00E02638139800647DEC /* CountdownViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViews.swift; sourceTree = "<group>"; };
-		77B6A9BA9BE03B89EBC75B09 /* Pods-eCommerce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.debug.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo-main/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.debug.xcconfig"; sourceTree = "<group>"; };
-		83D51A534FF3FC792E25D0BC /* Pods-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.release.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo-main/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
+		77B6A9BA9BE03B89EBC75B09 /* Pods-eCommerce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.debug.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.debug.xcconfig"; sourceTree = "<group>"; };
+		83D51A534FF3FC792E25D0BC /* Pods-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.release.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
 		B0604796E9C72975B9EAC568 /* libPods-eCommerce.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eCommerce.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5D00185D8E188697B92D43 /* Pods-IVSClients-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVSClients-eCommerce.release.xcconfig"; path = "../eCommerce/Pods/Target Support Files/Pods-IVSClients-eCommerce/Pods-IVSClients-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +196,7 @@
 			buildConfigurationList = 4664E34F2481198E00B75A8B /* Build configuration list for PBXNativeTarget "eCommerce" */;
 			buildPhases = (
 				82FFFFD775BD0E61B119FD5F /* [CP] Check Pods Manifest.lock */,
+				880E70AF09A77C09C5A92441 /* [CP] Prepare Artifacts */,
 				4664E3372481198C00B75A8B /* Sources */,
 				4664E3382481198C00B75A8B /* Frameworks */,
 				4664E3392481198C00B75A8B /* Resources */,
@@ -283,6 +284,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		880E70AF09A77C09C5A92441 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6A3B8A895ACD01F9D1E3776 /* [CP] Embed Pods Frameworks */ = {
