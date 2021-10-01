@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>DMSerifDisplay-Regular.ttf</string>
-		<string>DMSans-Regular.ttf</string>
-		<string>DMSans-Medium.ttf</string>
-		<string>DMSans-Bold.ttf</string>
+		<string>AmazonEmber-Bold.ttf</string>
+		<string>AmazonEmber-Heavy.ttf</string>
+		<string>AmazonEmber-Medium.ttf</string>
+		<string>AmazonEmber-Regular.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
