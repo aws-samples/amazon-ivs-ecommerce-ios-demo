@@ -26,7 +26,14 @@ class ProductViewCell: UITableViewCell {
 
         productImageView.layer.cornerRadius = 10
         titleLabel.text = product.name
-        priceLabel.text = "$\(product.price)"
+        if product.discountedPrice != 0 {
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(product.price)")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            priceLabel.attributedText = attributeString
+        } else {
+            priceLabel.text = "$\(product.price)"
+        }
+
         discountLabel.text = "$\(product.discountedPrice)"
         discountLabel.isHidden = product.discountedPrice == 0
     }

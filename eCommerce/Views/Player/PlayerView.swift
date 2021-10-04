@@ -12,14 +12,27 @@ enum PlayerViewState {
     case collapsed, expanded
 }
 
+protocol PlayerViewDelegate {
+    func show(_ alert: UIAlertController, animated: Bool)
+}
+
 class PlayerView: UIView {
     private var ivsView: IVSPlayerView?
+
+    var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
     var collapsedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
     var expandedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
+    var products: [Product] = []
+    let jsonDecoder = JSONDecoder()
 
-    @IBOutlet weak var controlsView: UIView!
+    @IBOutlet weak var controlsView: UIView! {
+        didSet {
+            controlsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(controlsViewTapped)))
+        }
+    }
     @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var bufferIndicator: UIActivityIndicatorView!
 
     var state: PlayerViewState? {
         didSet {
@@ -49,8 +62,7 @@ class PlayerView: UIView {
         ivsView.layer.masksToBounds = true
         ivsView.clipsToBounds = true
         ivsView.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        ivsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playerTapped)))
-
+        ivsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(collapsedPlayerTapped)))
         self.addSubview(ivsView)
 
         if let url = URL(string: Constants.streamUrl) {
@@ -111,6 +123,11 @@ class PlayerView: UIView {
         bringSubviewToFront(controlsView)
     }
 
+    private func show(_ product: Product) {
+        // TODO: - implement this
+        print("Showing product: \(product.name)")
+    }
+
     // MARK: - Player
 
     var player: IVSPlayer? {
@@ -149,58 +166,73 @@ class PlayerView: UIView {
 
     @objc private func controlsViewTapped() {
         controlsView.isHidden.toggle()
-        player?.state == .playing ? pausePlayback() : startPlayback()
     }
 
-    @objc private func playerTapped() {
+    @objc private func collapsedPlayerTapped() {
         if state == .collapsed {
             self.state = .expanded
+        } else {
+            controlsViewTapped()
         }
     }
 
     @IBAction func didTapHomeButton(_ sender: Any) {
         state = .collapsed
     }
+
+    // MARK: State display
+
+    private func presentError(_ error: Error, componentName: String) {
+        let alert = UIAlertController(title: "\(componentName) Error", message: String(reflecting: error), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+        delegate?.show(alert, animated: true)
+    }
+
+    private func presentAlert(_ message: String, componentName: String) {
+        let alert = UIAlertController(title: "\(componentName)", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+        delegate?.show(alert, animated: true)
+    }
+
+    private func updateForState(_ state: IVSPlayer.State) {
+        if state == .buffering {
+            bufferIndicator?.startAnimating()
+        } else {
+            bufferIndicator?.stopAnimating()
+        }
+    }
 }
 
 // MARK: - IVSPlayer.Delegate
 
 extension PlayerView: IVSPlayer.Delegate {
-
     func player(_ player: IVSPlayer, didChangeState state: IVSPlayer.State) {
-//        updateForState(state)
+        updateForState(state)
     }
 
     func player(_ player: IVSPlayer, didFailWithError error: Error) {
-//        presentError(error, componentName: "Player")
+        presentError(error, componentName: "Player")
     }
 
     func player(_ player: IVSPlayer, didOutputCue cue: IVSCue) {
         switch cue {
         case let textMetadataCue as IVSTextMetadataCue:
-            print("Received Timed Metadata (\(textMetadataCue.textDescription)): \(textMetadataCue.text)")
-//            guard let jsonData = textMetadataCue.text.data(using: .utf8) else {
-//                return
-//            }
-//            do {
-//                self.data = try jsonDecoder.decode(Products.self, from: jsonData)
-//            } catch {
-//                print("Could not decode products: \(error)")
-//            }
-        case let textCue as IVSTextCue:
-            print("Received Text Cue: “\(textCue.text)”")
-        default:
-            print("Received unknown cue (type \(cue.type))")
-        }
-    }
-
-    func player(_ player: IVSPlayer, didOutputMetadataWithType type: String, content: Data) {
-        if type == "text/plain" {
-            guard let textData = String(data: content, encoding: .utf8) else {
-                print("Unable to parse metadata as string")
+            print("ℹ Received Timed Metadata (\(textMetadataCue.textDescription)): \(textMetadataCue.text)")
+            guard let jsonData = textMetadataCue.text.data(using: .utf8) else {
                 return
             }
-            print("Received Timed Metadata: \(textData)")
+            do {
+                let json = try jsonDecoder.decode([String: String].self, from: jsonData)
+                if let id = json["productId"], let product = products.first(where: { $0.id == id }) {
+                    show(product)
+                }
+            } catch {
+                print("Could not decode productId: \(error)")
+            }
+        case let textCue as IVSTextCue:
+            print("ℹ Received Text Cue: “\(textCue.text)”")
+        default:
+            print("ℹ Received unknown cue (type \(cue.type))")
         }
     }
 }

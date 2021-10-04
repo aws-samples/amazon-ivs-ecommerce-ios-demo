@@ -35,11 +35,18 @@
                                 <action selector="didTapHomeButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="efz-Ee-Lc3"/>
                             </connections>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a5o-AH-Vy7">
+                            <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="OsY-h4-IGn" secondAttribute="trailing" constant="8" id="9xH-68-52S"/>
+                        <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerX" secondItem="P8l-yb-Ijp" secondAttribute="centerX" id="IKR-I8-eAD"/>
                         <constraint firstItem="OsY-h4-IGn" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="V9b-if-xxI"/>
+                        <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerY" secondItem="P8l-yb-Ijp" secondAttribute="centerY" id="mpQ-Zk-ZID"/>
                     </constraints>
                 </view>
             </subviews>
@@ -53,6 +60,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bufferIndicator" destination="a5o-AH-Vy7" id="BX6-wa-KHM"/>
                 <outlet property="controlsView" destination="P8l-yb-Ijp" id="4gA-NU-aOm"/>
                 <outlet property="homeButton" destination="OsY-h4-IGn" id="PIj-uA-Ic9"/>
             </connections>
