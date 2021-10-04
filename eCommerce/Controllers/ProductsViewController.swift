@@ -13,7 +13,7 @@ class ProductsViewController: UIViewController {
 
     // MARK: IBOutlet
     @IBOutlet weak var tableView: UITableView!
-    private var playerView: IVSPlayerView?
+    private var playerView: PlayerView?
 
     // MARK: View Lifecycle
 
@@ -25,6 +25,7 @@ class ProductsViewController: UIViewController {
         tableView.layer.cornerRadius = 30
 
         loadProducts()
+
         createPlayerView()
     }
 
@@ -38,34 +39,14 @@ class ProductsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startPlayback()
-        addApplicationLifecycleObservers()
+        playerView?.startPlayback()
+        playerView?.addApplicationLifecycleObservers()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        pausePlayback()
-        removeApplicationLifecycleObservers()
-    }
-
-    @objc private func applicationDidEnterBackground(notification: Notification) {
-        if player?.state == .playing || player?.state == .buffering {
-            pausePlayback()
-        }
-    }
-
-    @objc private func applicationWillEnterForeground(notification: Notification) {
-        startPlayback()
-    }
-
-    private func addApplicationLifecycleObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-
-    private func removeApplicationLifecycleObservers() {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        playerView?.pausePlayback()
+        playerView?.removeApplicationLifecycleObservers()
     }
 
     // MARK: Custom actions
@@ -88,58 +69,23 @@ class ProductsViewController: UIViewController {
     }
 
     private func createPlayerView() {
-        playerView = IVSPlayerView(frame: CGRect(x: 0, y: 0, width: 120, height: 200))
-        guard let playerView = playerView else {
-            return
+        playerView = Bundle.main.loadNibNamed("PlayerView", owner: self, options: nil)?[0] as? PlayerView
+        playerView?.collapsedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
+        playerView?.frame = CGRect(x: 0, y: 0, width: 120, height: 200)
+        playerView?.expandedSize = tableView.frame
+        playerView?.collapsedCenterPosition = CGPoint(
+            x: tableView.bounds.width - (playerView?.frame.width ?? 0) * 0.6,
+            y: tableView.bounds.height - (playerView?.frame.height ?? 0) * 0.5
+        )
+
+        if let playerView = playerView {
+            view.addSubview(playerView)
+            view.bringSubviewToFront(playerView)
+            playerView.setNeedsLayout()
+            view.layoutSubviews()
         }
 
-        playerView.backgroundColor = .black
-        playerView.layer.masksToBounds = true
-        playerView.center = self.view.center
-        playerView.layer.cornerRadius = 10
-        playerView.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.view.addSubview(playerView)
-
-        if let url = URL(string: Constants.portraitVideoUrlString) {
-            loadStream(from: url)
-            startPlayback()
-        }
-    }
-
-    // MARK: - Player
-
-    var player: IVSPlayer? {
-        didSet {
-            if oldValue != nil {
-                removeApplicationLifecycleObservers()
-            }
-            playerView?.player = player
-            if player != nil {
-                addApplicationLifecycleObservers()
-            }
-        }
-    }
-
-    // MARK: Playback Control
-    func loadStream(from streamURL: URL) {
-        let player: IVSPlayer
-        if let existingPlayer = self.player {
-            player = existingPlayer
-        } else {
-            player = IVSPlayer()
-            player.delegate = self
-            self.player = player
-            print("ℹ️ Player initialized: version \(player.version)")
-        }
-        player.load(streamURL)
-    }
-
-    private func startPlayback() {
-        player?.play()
-    }
-
-    private func pausePlayback() {
-        player?.pause()
+        playerView?.state = .expanded
     }
 }
 
@@ -171,46 +117,5 @@ extension ProductsViewController: UITableViewDataSource {
         }
         cell.setup(with: products[indexPath.row])
         return cell
-    }
-}
-
-// MARK: - IVSPlayer.Delegate
-extension ProductsViewController: IVSPlayer.Delegate {
-
-    func player(_ player: IVSPlayer, didChangeState state: IVSPlayer.State) {
-//        updateForState(state)
-    }
-
-    func player(_ player: IVSPlayer, didFailWithError error: Error) {
-//        presentError(error, componentName: "Player")
-    }
-
-    func player(_ player: IVSPlayer, didOutputCue cue: IVSCue) {
-        switch cue {
-        case let textMetadataCue as IVSTextMetadataCue:
-            print("Received Timed Metadata (\(textMetadataCue.textDescription)): \(textMetadataCue.text)")
-//            guard let jsonData = textMetadataCue.text.data(using: .utf8) else {
-//                return
-//            }
-//            do {
-//                self.data = try jsonDecoder.decode(Products.self, from: jsonData)
-//            } catch {
-//                print("Could not decode products: \(error)")
-//            }
-        case let textCue as IVSTextCue:
-            print("Received Text Cue: “\(textCue.text)”")
-        default:
-            print("Received unknown cue (type \(cue.type))")
-        }
-    }
-
-    func player(_ player: IVSPlayer, didOutputMetadataWithType type: String, content: Data) {
-        if type == "text/plain" {
-            guard let textData = String(data: content, encoding: .utf8) else {
-                print("Unable to parse metadata as string")
-                return
-            }
-            print("Received Timed Metadata: \(textData)")
-        }
     }
 }

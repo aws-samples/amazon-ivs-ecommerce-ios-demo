@@ -13,6 +13,8 @@
 		4664E3482481198E00B75A8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4664E3472481198E00B75A8B /* Assets.xcassets */; };
 		4664E34B2481198E00B75A8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4664E3492481198E00B75A8B /* LaunchScreen.storyboard */; };
 		46B18B77248E262C00BA0AF0 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18B76248E262C00BA0AF0 /* Products.swift */; };
+		5C3BD472270AFCF3004BCE01 /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BD471270AFCF3004BCE01 /* PlayerView.xib */; };
+		5C3BD474270AFD15004BCE01 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BD473270AFD15004BCE01 /* PlayerView.swift */; };
 		5CEC613F2707426400E1C472 /* AmazonEmber-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC61392707426300E1C472 /* AmazonEmber-Regular.ttf */; };
 		5CEC61402707426400E1C472 /* AmazonEmber-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC613A2707426300E1C472 /* AmazonEmber-Bold.ttf */; };
 		5CEC61412707426400E1C472 /* AmazonEmber-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC613B2707426300E1C472 /* AmazonEmber-Medium.ttf */; };
@@ -34,6 +36,8 @@
 		4664E34A2481198E00B75A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4664E34C2481198E00B75A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46B18B76248E262C00BA0AF0 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		5C3BD471270AFCF3004BCE01 /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
+		5C3BD473270AFD15004BCE01 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		5CEC61382707422200E1C472 /* Products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Products.json; sourceTree = "<group>"; };
 		5CEC61392707426300E1C472 /* AmazonEmber-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Regular.ttf"; sourceTree = "<group>"; };
 		5CEC613A2707426300E1C472 /* AmazonEmber-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Bold.ttf"; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5CEC61452707455600E1C472 /* ProductViewCell.swift */,
+				5C3BD475270B000A004BCE01 /* Player */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,6 +134,15 @@
 				4664E3422481198C00B75A8B /* ProductsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5C3BD475270B000A004BCE01 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				5C3BD473270AFD15004BCE01 /* PlayerView.swift */,
+				5C3BD471270AFCF3004BCE01 /* PlayerView.xib */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		91C8E2F2338A7F4553FD88D0 /* Pods */ = {
@@ -214,6 +228,7 @@
 			files = (
 				4664E34B2481198E00B75A8B /* LaunchScreen.storyboard in Resources */,
 				5CEC61412707426400E1C472 /* AmazonEmber-Medium.ttf in Resources */,
+				5C3BD472270AFCF3004BCE01 /* PlayerView.xib in Resources */,
 				5CEC613F2707426400E1C472 /* AmazonEmber-Regular.ttf in Resources */,
 				4664E3482481198E00B75A8B /* Assets.xcassets in Resources */,
 				5CEC61402707426400E1C472 /* AmazonEmber-Bold.ttf in Resources */,
@@ -291,6 +306,7 @@
 			files = (
 				5CEC61492707553600E1C472 /* Constants.swift in Sources */,
 				4664E3432481198C00B75A8B /* ProductsViewController.swift in Sources */,
+				5C3BD474270AFD15004BCE01 /* PlayerView.swift in Sources */,
 				4664E33F2481198C00B75A8B /* AppDelegate.swift in Sources */,
 				5CEC61462707455600E1C472 /* ProductViewCell.swift in Sources */,
 				46B18B77248E262C00BA0AF0 /* Products.swift in Sources */,
