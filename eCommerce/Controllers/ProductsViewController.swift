@@ -81,6 +81,7 @@ class ProductsViewController: UIViewController {
         if let playerView = playerView {
             view.addSubview(playerView)
             view.bringSubviewToFront(playerView)
+            playerView.setup()
             playerView.setNeedsLayout()
             view.layoutSubviews()
         }
@@ -143,7 +144,7 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 60))
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 120))
         let title = UILabel()
         title.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width, height: headerView.frame.height)
         title.textColor = .white
@@ -162,10 +163,16 @@ extension ProductsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as? ProductViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") else {
             return UITableViewCell()
         }
-        cell.setup(with: products[indexPath.row])
+
+        if let productView = Bundle.main.loadNibNamed("ProductView", owner: self, options: nil)?[0] as? ProductView {
+            productView.setup(with: products[indexPath.row], in: cell.bounds)
+            cell.addSubview(productView)
+            cell.layoutSubviews()
+        }
+
         return cell
     }
 }

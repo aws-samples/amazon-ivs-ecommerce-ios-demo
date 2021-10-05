@@ -1,23 +1,24 @@
 //
-//  ProductViewCell.swift
+//  ProductView.swift
 //  eCommerce
 //
-//  Created by Uldis Zingis on 01/10/2021.
+//  Created by Uldis Zingis on 05/10/2021.
 //  Copyright © 2021 Twitch. All rights reserved.
 
 import UIKit
 
-class ProductViewCell: UITableViewCell {
-
+class ProductView: UIView {
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
 
-    func setup(with product: Product) {
+    func setup(with product: Product, in frame: CGRect) {
+        self.frame = frame
+
         if var imageUrl = URL(string: Constants.productImageBaseUrl) {
             imageUrl.appendPathComponent(product.imageUrl)
-            getImageFrom(imageUrl) { [weak self] (image) in
+            Image.getFrom(imageUrl) { [weak self] (image) in
                 DispatchQueue.main.async {
                     self?.productImageView.image = image
                 }
@@ -26,31 +27,19 @@ class ProductViewCell: UITableViewCell {
 
         productImageView.layer.cornerRadius = 10
         titleLabel.text = product.name
-        if product.discountedPrice != 0 {
+        if product.discountedPrice != product.price {
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(product.price)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             priceLabel.attributedText = attributeString
         } else {
             priceLabel.text = "$\(product.price)"
+            priceLabel.textColor = .white
         }
 
         discountLabel.text = "$\(product.discountedPrice)"
-        discountLabel.isHidden = product.discountedPrice == 0
-    }
+        discountLabel.isHidden = product.discountedPrice == product.price
 
-    private func getImageFrom(_ url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
-            guard let data = data, error == nil else {
-                print("❌ Error getting image from \(url.absoluteString): \(error!)")
-                DispatchQueue.main.async { completion(nil) }
-                return
-            }
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async { completion(image) }
-            } else {
-                print("❌ Could not get UIImage from data \(data)")
-                DispatchQueue.main.async { completion(nil) }
-            }
-        }).resume()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }

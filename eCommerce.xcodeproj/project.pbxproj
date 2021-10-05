@@ -15,11 +15,13 @@
 		46B18B77248E262C00BA0AF0 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18B76248E262C00BA0AF0 /* Products.swift */; };
 		5C3BD472270AFCF3004BCE01 /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BD471270AFCF3004BCE01 /* PlayerView.xib */; };
 		5C3BD474270AFD15004BCE01 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BD473270AFD15004BCE01 /* PlayerView.swift */; };
+		5C56C5F3270C5FB400473E52 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56C5F2270C5FB400473E52 /* Image.swift */; };
+		5C56C5F5270C826700473E52 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56C5F4270C826700473E52 /* ProductView.swift */; };
+		5C56C5F7270C82AF00473E52 /* ProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C56C5F6270C82AF00473E52 /* ProductView.xib */; };
 		5CEC613F2707426400E1C472 /* AmazonEmber-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC61392707426300E1C472 /* AmazonEmber-Regular.ttf */; };
 		5CEC61402707426400E1C472 /* AmazonEmber-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC613A2707426300E1C472 /* AmazonEmber-Bold.ttf */; };
 		5CEC61412707426400E1C472 /* AmazonEmber-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC613B2707426300E1C472 /* AmazonEmber-Medium.ttf */; };
 		5CEC61422707426400E1C472 /* AmazonEmber-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC613C2707426300E1C472 /* AmazonEmber-Heavy.ttf */; };
-		5CEC61462707455600E1C472 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC61452707455600E1C472 /* ProductViewCell.swift */; };
 		5CEC61472707521900E1C472 /* Products.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC61382707422200E1C472 /* Products.json */; };
 		5CEC61492707553600E1C472 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC61482707553600E1C472 /* Constants.swift */; };
 		E29B5C62A0CC8F1F22C7E1DE /* libPods-eCommerce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0604796E9C72975B9EAC568 /* libPods-eCommerce.a */; };
@@ -38,12 +40,14 @@
 		46B18B76248E262C00BA0AF0 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		5C3BD471270AFCF3004BCE01 /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
 		5C3BD473270AFD15004BCE01 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		5C56C5F2270C5FB400473E52 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		5C56C5F4270C826700473E52 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		5C56C5F6270C82AF00473E52 /* ProductView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductView.xib; sourceTree = "<group>"; };
 		5CEC61382707422200E1C472 /* Products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Products.json; sourceTree = "<group>"; };
 		5CEC61392707426300E1C472 /* AmazonEmber-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Regular.ttf"; sourceTree = "<group>"; };
 		5CEC613A2707426300E1C472 /* AmazonEmber-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Bold.ttf"; sourceTree = "<group>"; };
 		5CEC613B2707426300E1C472 /* AmazonEmber-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Medium.ttf"; sourceTree = "<group>"; };
 		5CEC613C2707426300E1C472 /* AmazonEmber-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmazonEmber-Heavy.ttf"; sourceTree = "<group>"; };
-		5CEC61452707455600E1C472 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		5CEC61482707553600E1C472 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		77B6A9BA9BE03B89EBC75B09 /* Pods-eCommerce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.debug.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.debug.xcconfig"; sourceTree = "<group>"; };
 		83D51A534FF3FC792E25D0BC /* Pods-eCommerce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eCommerce.release.xcconfig"; path = "../amazon-ivs-ecommerce-ios-demo/Pods/Target Support Files/Pods-eCommerce/Pods-eCommerce.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +118,7 @@
 		4674B023248E322B0047FD37 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5CEC61452707455600E1C472 /* ProductViewCell.swift */,
+				5C56C5F8270C82B500473E52 /* Product */,
 				5C3BD475270B000A004BCE01 /* Player */,
 			);
 			path = Views;
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				46B18B76248E262C00BA0AF0 /* Products.swift */,
+				5C56C5F2270C5FB400473E52 /* Image.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +148,15 @@
 				5C3BD471270AFCF3004BCE01 /* PlayerView.xib */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		5C56C5F8270C82B500473E52 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				5C56C5F4270C826700473E52 /* ProductView.swift */,
+				5C56C5F6270C82AF00473E52 /* ProductView.xib */,
+			);
+			path = Product;
 			sourceTree = "<group>";
 		};
 		91C8E2F2338A7F4553FD88D0 /* Pods */ = {
@@ -234,6 +248,7 @@
 				5CEC61402707426400E1C472 /* AmazonEmber-Bold.ttf in Resources */,
 				5CEC61422707426400E1C472 /* AmazonEmber-Heavy.ttf in Resources */,
 				4664E3462481198C00B75A8B /* Main.storyboard in Resources */,
+				5C56C5F7270C82AF00473E52 /* ProductView.xib in Resources */,
 				5CEC61472707521900E1C472 /* Products.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,11 +319,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C56C5F5270C826700473E52 /* ProductView.swift in Sources */,
+				5C56C5F3270C5FB400473E52 /* Image.swift in Sources */,
 				5CEC61492707553600E1C472 /* Constants.swift in Sources */,
 				4664E3432481198C00B75A8B /* ProductsViewController.swift in Sources */,
 				5C3BD474270AFD15004BCE01 /* PlayerView.swift in Sources */,
 				4664E33F2481198C00B75A8B /* AppDelegate.swift in Sources */,
-				5CEC61462707455600E1C472 /* ProductViewCell.swift in Sources */,
 				46B18B77248E262C00BA0AF0 /* Products.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

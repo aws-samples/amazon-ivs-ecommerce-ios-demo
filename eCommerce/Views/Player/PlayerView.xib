@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AmazonEmber-Bold.ttf">
+            <string>AmazonEmber-Bold</string>
+        </array>
+        <array key="AmazonEmber-Medium.ttf">
+            <string>AmazonEmber-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,19 +26,19 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8l-yb-Ijp">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-h4-IGn">
-                            <rect key="frame" x="362" y="8" width="44" height="44"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-h4-IGn">
+                            <rect key="frame" x="354" y="8" width="44" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="dPu-gf-LSp"/>
                                 <constraint firstAttribute="width" constant="44" id="iS0-bO-Lfe"/>
                             </constraints>
-                            <inset key="imageEdgeInsets" minX="13" minY="13" maxX="13" maxY="13"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="home_icon">
-                                <directionalEdgeInsets key="contentInsets" top="13" leading="13" bottom="13" trailing="13"/>
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="contentEdgeInsets" minX="13" minY="13" maxX="13" maxY="13"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Button" image="home_icon">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="didTapHomeButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="efz-Ee-Lc3"/>
                             </connections>
@@ -40,35 +48,143 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-ch-xHc">
+                            <rect key="frame" x="16" y="8" width="145" height="48"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdC-No-TJ9">
+                                    <rect key="frame" x="4" y="4" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="hdC-No-TJ9" secondAttribute="height" multiplier="1:1" id="yEa-rA-h10"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACME Co" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfG-jv-uBx">
+                                    <rect key="frame" x="52" y="6" width="85" height="19.5"/>
+                                    <fontDescription key="fontDescription" name="AmazonEmber-Bold" family="Amazon Ember" pointSize="16"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dzR-7Y-cvm">
+                                    <rect key="frame" x="52" y="28" width="12" height="12"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="12" id="08V-r6-gQS"/>
+                                        <constraint firstAttribute="width" secondItem="dzR-7Y-cvm" secondAttribute="height" multiplier="1:1" id="Jpp-S8-H4t"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-rT-6rd">
+                                    <rect key="frame" x="69" y="25.5" width="68" height="14.5"/>
+                                    <fontDescription key="fontDescription" name="AmazonEmber-Medium" family="Amazon Ember" pointSize="12"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="05f-Zu-HPA"/>
+                                <constraint firstItem="dfG-jv-uBx" firstAttribute="leading" secondItem="hdC-No-TJ9" secondAttribute="trailing" constant="8" id="7PG-Oq-Q3K"/>
+                                <constraint firstItem="dfG-jv-uBx" firstAttribute="top" secondItem="FD2-ch-xHc" secondAttribute="top" constant="6" id="Epq-Gf-cCh"/>
+                                <constraint firstItem="hdC-No-TJ9" firstAttribute="leading" secondItem="FD2-ch-xHc" secondAttribute="leading" constant="4" id="GMb-ZD-c1q"/>
+                                <constraint firstAttribute="bottom" secondItem="hdC-No-TJ9" secondAttribute="bottom" constant="4" id="H7G-4z-PPg"/>
+                                <constraint firstItem="dzR-7Y-cvm" firstAttribute="leading" secondItem="hdC-No-TJ9" secondAttribute="trailing" constant="8" id="Ot8-8p-Pgu"/>
+                                <constraint firstAttribute="trailing" secondItem="dfG-jv-uBx" secondAttribute="trailing" constant="8" id="PhH-Rz-0Fa"/>
+                                <constraint firstItem="9LH-rT-6rd" firstAttribute="leading" secondItem="dzR-7Y-cvm" secondAttribute="trailing" constant="5" id="QEJ-8X-JVu"/>
+                                <constraint firstAttribute="trailing" secondItem="9LH-rT-6rd" secondAttribute="trailing" constant="8" id="S0R-E6-hiT"/>
+                                <constraint firstAttribute="width" constant="145" id="SBV-mS-3iI"/>
+                                <constraint firstItem="dzR-7Y-cvm" firstAttribute="bottom" secondItem="9LH-rT-6rd" secondAttribute="bottom" id="gyC-sM-oxI"/>
+                                <constraint firstItem="hdC-No-TJ9" firstAttribute="top" secondItem="FD2-ch-xHc" secondAttribute="top" constant="4" id="h1W-Gz-J4x"/>
+                                <constraint firstItem="9LH-rT-6rd" firstAttribute="top" secondItem="dfG-jv-uBx" secondAttribute="bottom" id="rPl-CM-tOv"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sg-nB-Zty">
+                            <rect key="frame" x="16" y="621" width="382" height="147"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxI-gV-grR">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="95" id="Gej-t9-nch"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0ys-kC-cEZ">
+                                    <rect key="frame" x="16" y="95" width="350" height="36"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6b-ME-dg7">
+                                            <rect key="frame" x="0.0" y="0.0" width="171" height="36"/>
+                                            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="AmazonEmber-Medium" family="Amazon Ember" pointSize="13"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Add to Cart">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fH7-gc-jOG">
+                                            <rect key="frame" x="179" y="0.0" width="171" height="36"/>
+                                            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="AmazonEmber-Medium" family="Amazon Ember" pointSize="13"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Buy Now">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="Iu7-q1-FFX"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="0ys-kC-cEZ" secondAttribute="bottom" constant="16" id="0iN-M4-uTc"/>
+                                <constraint firstItem="0ys-kC-cEZ" firstAttribute="leading" secondItem="1Sg-nB-Zty" secondAttribute="leading" constant="16" id="2hp-60-Eup"/>
+                                <constraint firstAttribute="trailing" secondItem="0ys-kC-cEZ" secondAttribute="trailing" constant="16" id="ALZ-SR-CtN"/>
+                                <constraint firstItem="0ys-kC-cEZ" firstAttribute="top" secondItem="TxI-gV-grR" secondAttribute="bottom" id="Jtn-Y3-yIw"/>
+                                <constraint firstItem="TxI-gV-grR" firstAttribute="top" secondItem="1Sg-nB-Zty" secondAttribute="top" id="XuT-7t-fmD"/>
+                                <constraint firstItem="TxI-gV-grR" firstAttribute="leading" secondItem="1Sg-nB-Zty" secondAttribute="leading" id="ltT-80-AgC"/>
+                                <constraint firstAttribute="trailing" secondItem="TxI-gV-grR" secondAttribute="trailing" id="vsd-TB-9bH"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="OsY-h4-IGn" secondAttribute="trailing" constant="8" id="9xH-68-52S"/>
+                        <constraint firstItem="1Sg-nB-Zty" firstAttribute="leading" secondItem="P8l-yb-Ijp" secondAttribute="leading" constant="16" id="81F-7a-bVK"/>
+                        <constraint firstAttribute="trailing" secondItem="OsY-h4-IGn" secondAttribute="trailing" constant="16" id="9xH-68-52S"/>
+                        <constraint firstItem="FD2-ch-xHc" firstAttribute="leading" secondItem="P8l-yb-Ijp" secondAttribute="leading" constant="16" id="Gqu-hU-zy8"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerX" secondItem="P8l-yb-Ijp" secondAttribute="centerX" id="IKR-I8-eAD"/>
+                        <constraint firstAttribute="trailing" secondItem="1Sg-nB-Zty" secondAttribute="trailing" constant="16" id="Kq9-cA-sET"/>
                         <constraint firstItem="OsY-h4-IGn" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="V9b-if-xxI"/>
+                        <constraint firstItem="FD2-ch-xHc" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="lgd-bM-NJf"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerY" secondItem="P8l-yb-Ijp" secondAttribute="centerY" id="mpQ-Zk-ZID"/>
+                        <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" constant="50" id="rWW-za-a2H"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="topMargin" secondItem="P8l-yb-Ijp" secondAttribute="top" id="AUd-1g-bvf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P8l-yb-Ijp" secondAttribute="bottom" id="STI-I1-1As"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P8l-yb-Ijp" secondAttribute="trailing" id="di0-6i-UxA"/>
                 <constraint firstItem="P8l-yb-Ijp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hbX-tI-a88"/>
-                <constraint firstItem="P8l-yb-Ijp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="tt1-sw-EIM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bufferIndicator" destination="a5o-AH-Vy7" id="BX6-wa-KHM"/>
                 <outlet property="controlsView" destination="P8l-yb-Ijp" id="4gA-NU-aOm"/>
                 <outlet property="homeButton" destination="OsY-h4-IGn" id="PIj-uA-Ic9"/>
+                <outlet property="productAddToCartButton" destination="F6b-ME-dg7" id="jin-oM-Jch"/>
+                <outlet property="productBuyNowButton" destination="fH7-gc-jOG" id="VoX-Id-Vrd"/>
+                <outlet property="productHolderView" destination="TxI-gV-grR" id="XOZ-Ls-W4Z"/>
+                <outlet property="productPopup" destination="1Sg-nB-Zty" id="ZAZ-HZ-HtV"/>
+                <outlet property="streamInfoPill" destination="FD2-ch-xHc" id="aGo-hK-eWs"/>
+                <outlet property="streamInfoPillImageView" destination="hdC-No-TJ9" id="4sM-0s-iET"/>
             </connections>
-            <point key="canvasLocation" x="139" y="151"/>
+            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </view>
     </objects>
     <resources>
         <image name="home_icon" width="36" height="32"/>
+        <image name="live" width="25" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

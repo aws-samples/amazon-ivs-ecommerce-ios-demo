@@ -22,7 +22,7 @@ class PlayerView: UIView {
     var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
     var collapsedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
-    var expandedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
+    var expandedSize = UIScreen.main.bounds
     var products: [Product] = []
     let jsonDecoder = JSONDecoder()
 
@@ -33,6 +33,12 @@ class PlayerView: UIView {
     }
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var bufferIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var streamInfoPill: UIView!
+    @IBOutlet weak var streamInfoPillImageView: UIImageView!
+    @IBOutlet weak var productPopup: UIView!
+    @IBOutlet weak var productAddToCartButton: UIButton!
+    @IBOutlet weak var productBuyNowButton: UIButton!
+    @IBOutlet weak var productHolderView: UIView!
 
     var state: PlayerViewState? {
         didSet {
@@ -51,13 +57,10 @@ class PlayerView: UIView {
     }
 
     func commonInit() {
-        ivsView = IVSPlayerView(frame: collapsedSize)
+        ivsView = IVSPlayerView(frame: expandedSize)
         guard let ivsView = ivsView else {
             return
         }
-
-        self.backgroundColor = .black
-
         ivsView.backgroundColor = .black
         ivsView.layer.masksToBounds = true
         ivsView.clipsToBounds = true
@@ -91,20 +94,36 @@ class PlayerView: UIView {
         startPlayback()
     }
 
+    func setup() {
+        streamInfoPill.backgroundColor = .white
+        streamInfoPill.layer.cornerRadius = 25
+        streamInfoPillImageView.layer.cornerRadius = streamInfoPillImageView.frame.size.width / 2
+        if let imageUrl = URL(string: "https://ecommerce.ivsdemos.com/images/profile.png") {
+            Image.getFrom(imageUrl) { [weak self] (image) in
+                DispatchQueue.main.async {
+                    self?.streamInfoPillImageView.image = image
+                }
+            }
+        }
+        productAddToCartButton.layer.cornerRadius = 4
+        productBuyNowButton.layer.cornerRadius = 4
+        productPopup.layer.cornerRadius = 16
+    }
+
     private func setSizeForState() {
         switch state {
         case .collapsed:
             self.frame = collapsedSize
-            ivsView?.frame = self.frame
             self.layer.cornerRadius = 10
+            ivsView?.frame = self.bounds
             ivsView?.layer.cornerRadius = 10
             self.center = collapsedCenterPosition
             controlsView.isHidden = true
 
         case .expanded:
             self.frame = expandedSize
-            ivsView?.frame = self.frame
             self.layer.cornerRadius = 30
+            ivsView?.frame = self.bounds
             ivsView?.layer.cornerRadius = 30
             showControlsView()
 
@@ -124,8 +143,23 @@ class PlayerView: UIView {
     }
 
     private func show(_ product: Product) {
-        // TODO: - implement this
-        print("Showing product: \(product.name)")
+        if productPopup.isHidden {
+            if let productView = Bundle.main.loadNibNamed("ProductView", owner: self, options: nil)?[0] as? ProductView {
+                productView.setup(with: product, in: productHolderView.bounds)
+                productHolderView.addSubview(productView)
+                productHolderView.layoutSubviews()
+            }
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
+                self.productPopup.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
+                self.productPopup.isHidden = true
+            } completion: { _ in
+                self.productHolderView.subviews[0].removeFromSuperview()
+                self.show(product)
+            }
+        }
     }
 
     // MARK: - Player
