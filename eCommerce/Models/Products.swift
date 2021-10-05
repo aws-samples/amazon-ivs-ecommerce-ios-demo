@@ -6,7 +6,7 @@
 //  Copyright © 2020 Twitch. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Products: Decodable {
     var items: [Product] = []
@@ -16,7 +16,7 @@ struct Products: Decodable {
     }
 }
 
-struct Product: Decodable {
+struct Product: Decodable, Equatable {
     var id: String
     var name: String
     var imageUrl: String
@@ -24,4 +24,13 @@ struct Product: Decodable {
     var price: Int
     var discountedPrice: Int
     var longDescription: String
+
+    func getImage(completion: @escaping (UIImage?) -> Void) {
+        if var url = URL(string: Constants.productImageBaseUrl) {
+            url.appendPathComponent(imageUrl)
+            Image.getFrom(url) { image in
+                completion(image)
+            }
+        }
+    }
 }

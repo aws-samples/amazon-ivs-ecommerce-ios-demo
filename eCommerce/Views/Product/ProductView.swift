@@ -16,15 +16,11 @@ class ProductView: UIView {
     func setup(with product: Product, in frame: CGRect) {
         self.frame = frame
 
-        if var imageUrl = URL(string: Constants.productImageBaseUrl) {
-            imageUrl.appendPathComponent(product.imageUrl)
-            Image.getFrom(imageUrl) { [weak self] (image) in
-                DispatchQueue.main.async {
-                    self?.productImageView.image = image
-                }
+        product.getImage { image in
+            DispatchQueue.main.async {
+                self.productImageView.image = image
             }
         }
-
         productImageView.layer.cornerRadius = 10
         titleLabel.text = product.name
         if product.discountedPrice != product.price {

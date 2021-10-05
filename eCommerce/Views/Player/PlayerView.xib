@@ -95,7 +95,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sg-nB-Zty">
-                            <rect key="frame" x="16" y="621" width="382" height="147"/>
+                            <rect key="frame" x="16" y="871" width="382" height="147"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxI-gV-grR">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
@@ -155,7 +155,7 @@
                         <constraint firstItem="OsY-h4-IGn" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="V9b-if-xxI"/>
                         <constraint firstItem="FD2-ch-xHc" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="lgd-bM-NJf"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerY" secondItem="P8l-yb-Ijp" secondAttribute="centerY" id="mpQ-Zk-ZID"/>
-                        <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" constant="50" id="rWW-za-a2H"/>
+                        <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" constant="-200" id="rWW-za-a2H"/>
                     </constraints>
                 </view>
             </subviews>
@@ -176,6 +176,7 @@
                 <outlet property="productBuyNowButton" destination="fH7-gc-jOG" id="VoX-Id-Vrd"/>
                 <outlet property="productHolderView" destination="TxI-gV-grR" id="XOZ-Ls-W4Z"/>
                 <outlet property="productPopup" destination="1Sg-nB-Zty" id="ZAZ-HZ-HtV"/>
+                <outlet property="productsPopupBottomConstraint" destination="rWW-za-a2H" id="EOD-1w-4M6"/>
                 <outlet property="streamInfoPill" destination="FD2-ch-xHc" id="aGo-hK-eWs"/>
                 <outlet property="streamInfoPillImageView" destination="hdC-No-TJ9" id="4sM-0s-iET"/>
             </connections>

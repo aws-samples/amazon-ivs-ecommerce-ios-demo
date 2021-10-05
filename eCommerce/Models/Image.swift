@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Image {
+enum Image {
     static func getFrom(_ url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
             guard let data = data, error == nil else {

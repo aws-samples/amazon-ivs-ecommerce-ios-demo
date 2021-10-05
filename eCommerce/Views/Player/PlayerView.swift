@@ -18,6 +18,7 @@ protocol PlayerViewDelegate {
 
 class PlayerView: UIView {
     private var ivsView: IVSPlayerView?
+    private var currentProduct: Product?
 
     var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
@@ -39,6 +40,7 @@ class PlayerView: UIView {
     @IBOutlet weak var productAddToCartButton: UIButton!
     @IBOutlet weak var productBuyNowButton: UIButton!
     @IBOutlet weak var productHolderView: UIView!
+    @IBOutlet weak var productsPopupBottomConstraint: NSLayoutConstraint!
 
     var state: PlayerViewState? {
         didSet {
@@ -108,6 +110,9 @@ class PlayerView: UIView {
         productAddToCartButton.layer.cornerRadius = 4
         productBuyNowButton.layer.cornerRadius = 4
         productPopup.layer.cornerRadius = 16
+        homeButton.layer.cornerRadius = homeButton.layer.bounds.width / 2
+        homeButton.titleLabel?.text = ""
+        bringSubviewToFront(controlsView)
     }
 
     private func setSizeForState() {
@@ -137,26 +142,35 @@ class PlayerView: UIView {
 
     private func showControlsView() {
         controlsView.isHidden = false
-        homeButton.layer.cornerRadius = homeButton.layer.bounds.width / 2
-        homeButton.titleLabel?.text = ""
-        bringSubviewToFront(controlsView)
     }
 
     private func show(_ product: Product) {
+        guard currentProduct == nil else {
+            return
+        }
+
+        self.layoutIfNeeded()
         if productPopup.isHidden {
             if let productView = Bundle.main.loadNibNamed("ProductView", owner: self, options: nil)?[0] as? ProductView {
                 productView.setup(with: product, in: productHolderView.bounds)
                 productHolderView.addSubview(productView)
                 productHolderView.layoutSubviews()
             }
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
-                self.productPopup.isHidden = false
+            self.productPopup.isHidden = false
+
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+                self.productsPopupBottomConstraint.constant = 50
+                self.layoutIfNeeded()
             }
+            currentProduct = product
         } else {
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
-                self.productPopup.isHidden = true
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+                self.productsPopupBottomConstraint.constant = -self.productPopup.frame.height
+                self.layoutIfNeeded()
             } completion: { _ in
+                self.currentProduct = nil
                 self.productHolderView.subviews[0].removeFromSuperview()
+                self.productPopup.isHidden = true
                 self.show(product)
             }
         }
@@ -199,7 +213,12 @@ class PlayerView: UIView {
     }
 
     @objc private func controlsViewTapped() {
-        controlsView.isHidden.toggle()
+        // TODO: - toggle topBar
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.productsPopupBottomConstraint.constant = self.productsPopupBottomConstraint.constant < 0 ? 50 : -60
+            self.layoutIfNeeded()
+        }
     }
 
     @objc private func collapsedPlayerTapped() {
