@@ -15,6 +15,9 @@
         <array key="AmazonEmber-Medium.ttf">
             <string>AmazonEmber-Medium</string>
         </array>
+        <array key="AmazonEmber-Regular.ttf">
+            <string>AmazonEmber-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -95,7 +98,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sg-nB-Zty">
-                            <rect key="frame" x="16" y="871" width="382" height="147"/>
+                            <rect key="frame" x="16" y="671" width="382" height="147"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxI-gV-grR">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
@@ -144,18 +147,57 @@
                                 <constraint firstAttribute="trailing" secondItem="TxI-gV-grR" secondAttribute="trailing" id="vsd-TB-9bH"/>
                             </constraints>
                         </view>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="450-xK-48I">
+                            <rect key="frame" x="132" y="620" width="150.5" height="35"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal ends in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-7Y-XCl">
+                                    <rect key="frame" x="16" y="8" width="83.5" height="19"/>
+                                    <fontDescription key="fontDescription" name="AmazonEmber-Regular" family="Amazon Ember" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTQ-zJ-pNj">
+                                    <rect key="frame" x="103.5" y="8" width="31" height="19"/>
+                                    <fontDescription key="fontDescription" name="AmazonEmber-Bold" family="Amazon Ember" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99861246349999999" green="0.88722467419999995" blue="0.28492665290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="iTQ-zJ-pNj" secondAttribute="bottom" constant="8" id="1kt-Bf-nKi"/>
+                                <constraint firstItem="iTQ-zJ-pNj" firstAttribute="leading" secondItem="oPM-7Y-XCl" secondAttribute="trailing" constant="4" id="3OW-Iv-96k"/>
+                                <constraint firstAttribute="trailing" secondItem="iTQ-zJ-pNj" secondAttribute="trailing" constant="16" id="7je-gA-bil"/>
+                                <constraint firstAttribute="height" constant="35" id="IF1-2v-yRB"/>
+                                <constraint firstItem="iTQ-zJ-pNj" firstAttribute="top" secondItem="450-xK-48I" secondAttribute="top" constant="8" id="SVT-bG-Rjh"/>
+                                <constraint firstAttribute="bottom" secondItem="oPM-7Y-XCl" secondAttribute="bottom" constant="8" id="TRC-ot-nbe"/>
+                                <constraint firstItem="oPM-7Y-XCl" firstAttribute="leading" secondItem="450-xK-48I" secondAttribute="leading" constant="16" id="YT5-di-zWF"/>
+                                <constraint firstItem="oPM-7Y-XCl" firstAttribute="top" secondItem="450-xK-48I" secondAttribute="top" constant="8" id="ic4-M7-Pgc"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-ii-Jzj">
+                            <rect key="frame" x="0.0" y="662" width="414" height="200"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="mkw-Du-SE1"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="NHt-ii-Jzj" firstAttribute="leading" secondItem="P8l-yb-Ijp" secondAttribute="leading" id="3s8-YF-uS2"/>
                         <constraint firstItem="1Sg-nB-Zty" firstAttribute="leading" secondItem="P8l-yb-Ijp" secondAttribute="leading" constant="16" id="81F-7a-bVK"/>
                         <constraint firstAttribute="trailing" secondItem="OsY-h4-IGn" secondAttribute="trailing" constant="16" id="9xH-68-52S"/>
                         <constraint firstItem="FD2-ch-xHc" firstAttribute="leading" secondItem="P8l-yb-Ijp" secondAttribute="leading" constant="16" id="Gqu-hU-zy8"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerX" secondItem="P8l-yb-Ijp" secondAttribute="centerX" id="IKR-I8-eAD"/>
+                        <constraint firstAttribute="trailing" secondItem="NHt-ii-Jzj" secondAttribute="trailing" id="JIg-Sy-ipY"/>
+                        <constraint firstItem="1Sg-nB-Zty" firstAttribute="top" secondItem="450-xK-48I" secondAttribute="bottom" constant="16" id="K1k-HV-lna"/>
                         <constraint firstAttribute="trailing" secondItem="1Sg-nB-Zty" secondAttribute="trailing" constant="16" id="Kq9-cA-sET"/>
                         <constraint firstItem="OsY-h4-IGn" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="V9b-if-xxI"/>
+                        <constraint firstItem="450-xK-48I" firstAttribute="centerX" secondItem="P8l-yb-Ijp" secondAttribute="centerX" id="a1a-05-vNd"/>
                         <constraint firstItem="FD2-ch-xHc" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="lgd-bM-NJf"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerY" secondItem="P8l-yb-Ijp" secondAttribute="centerY" id="mpQ-Zk-ZID"/>
-                        <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" constant="-200" id="rWW-za-a2H"/>
+                        <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" id="rWW-za-a2H"/>
                     </constraints>
                 </view>
             </subviews>
@@ -166,9 +208,11 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P8l-yb-Ijp" secondAttribute="bottom" id="STI-I1-1As"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P8l-yb-Ijp" secondAttribute="trailing" id="di0-6i-UxA"/>
                 <constraint firstItem="P8l-yb-Ijp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hbX-tI-a88"/>
+                <constraint firstAttribute="bottomMargin" secondItem="NHt-ii-Jzj" secondAttribute="bottom" constant="-44" id="xWO-m5-NPK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottomGradientView" destination="NHt-ii-Jzj" id="8pW-Xi-gMs"/>
                 <outlet property="bufferIndicator" destination="a5o-AH-Vy7" id="BX6-wa-KHM"/>
                 <outlet property="controlsView" destination="P8l-yb-Ijp" id="4gA-NU-aOm"/>
                 <outlet property="homeButton" destination="OsY-h4-IGn" id="PIj-uA-Ic9"/>
@@ -181,6 +225,8 @@
                 <outlet property="streamInfoPill" destination="FD2-ch-xHc" id="aGo-hK-eWs"/>
                 <outlet property="streamInfoPillImageView" destination="hdC-No-TJ9" id="4sM-0s-iET"/>
                 <outlet property="streamInfoPillTopConstraint" destination="lgd-bM-NJf" id="NXg-4L-0TX"/>
+                <outlet property="timerLabel" destination="iTQ-zJ-pNj" id="hKi-h0-Aq4"/>
+                <outlet property="timerView" destination="450-xK-48I" id="Xr8-jx-5lS"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </view>

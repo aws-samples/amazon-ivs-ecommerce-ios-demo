@@ -20,6 +20,8 @@ class PlayerView: UIView {
     private var ivsView: IVSPlayerView?
     private var currentProduct: Product?
     private var controllsViewCollapsed: Bool = false
+    private var timer: Timer?
+    private var currentSeconds: Int = 11
 
     var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
@@ -27,6 +29,8 @@ class PlayerView: UIView {
     var expandedSize = UIScreen.main.bounds
     var products: [Product] = []
     let jsonDecoder = JSONDecoder()
+
+    // MARK: - IBOutlet
 
     @IBOutlet weak var controlsView: UIView! {
         didSet {
@@ -41,6 +45,9 @@ class PlayerView: UIView {
     @IBOutlet weak var productAddToCartButton: UIButton!
     @IBOutlet weak var productBuyNowButton: UIButton!
     @IBOutlet weak var productHolderView: UIView!
+    @IBOutlet weak var bottomGradientView: UIView!
+    @IBOutlet weak var timerView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var productsPopupBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var homeButtonTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var streamInfoPillTopConstraint: NSLayoutConstraint!
@@ -50,6 +57,8 @@ class PlayerView: UIView {
             setSizeForState()
         }
     }
+
+    // MARK: View Lifecycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,6 +86,10 @@ class PlayerView: UIView {
             loadStream(from: url)
             startPlayback()
         }
+    }
+
+    deinit {
+        timer?.invalidate()
     }
 
     func addApplicationLifecycleObservers() {
@@ -113,10 +126,23 @@ class PlayerView: UIView {
         productAddToCartButton.layer.cornerRadius = 4
         productBuyNowButton.layer.cornerRadius = 4
         productPopup.layer.cornerRadius = 16
+        timerView.layer.cornerRadius = 16
+        timerView.isHidden = true
         homeButton.layer.cornerRadius = homeButton.layer.bounds.width / 2
         homeButton.titleLabel?.text = ""
         bringSubviewToFront(controlsView)
+
+        let gradient = CAGradientLayer()
+        gradient.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor
+        ]
+        gradient.locations = [0.0, 1.0]
+        gradient.frame = bottomGradientView.bounds
+        bottomGradientView.layer.insertSublayer(gradient, at: 0)
     }
+
+    // MARK: Custom actions
 
     private func setSizeForState() {
         switch state {
@@ -148,7 +174,7 @@ class PlayerView: UIView {
     }
 
     private func show(_ product: Product) {
-        guard state != .collapsed, currentProduct != product else {
+        guard state != .collapsed, currentProduct == nil else {
             return
         }
 
@@ -160,10 +186,13 @@ class PlayerView: UIView {
                 productHolderView.layoutSubviews()
             }
             self.productPopup.isHidden = false
+            self.timerView.isHidden = self.controllsViewCollapsed
 
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? 50 : -60
+                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -60 : 50
                 self.layoutIfNeeded()
+            } completion: { _ in
+                self.startCountdown()
             }
             currentProduct = product
         } else {
@@ -174,8 +203,32 @@ class PlayerView: UIView {
                 self.currentProduct = nil
                 self.productHolderView.subviews[0].removeFromSuperview()
                 self.productPopup.isHidden = true
+                self.timerView.isHidden = true
                 self.show(product)
             }
+        }
+    }
+
+    private func startCountdown() {
+        if let timer = timer {
+            timer.invalidate()
+        }
+        currentSeconds = 11
+        timerUpdated()
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(timerUpdated),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+
+    @objc private func timerUpdated() {
+        currentSeconds -= 1
+        timerLabel.text = "0:\(currentSeconds)"
+        if currentSeconds == 0 {
+            timerView.isHidden = true
+            currentProduct = nil
+            timer?.invalidate()
         }
     }
 
@@ -194,6 +247,7 @@ class PlayerView: UIView {
     }
 
     // MARK: Playback Control
+
     private func loadStream(from streamURL: URL) {
         let player: IVSPlayer
         if let existingPlayer = self.player {
@@ -215,14 +269,10 @@ class PlayerView: UIView {
         player?.pause()
     }
 
-    @objc private func controlsViewTapped() {
-        controllsViewCollapsed.toggle()
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-            self.streamInfoPillTopConstraint.constant = self.controllsViewCollapsed ? 8 : -100
-            self.homeButtonTopConstraint.constant = self.controllsViewCollapsed ? 8 : -100
-            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? 50 : -60
-            self.layoutIfNeeded()
-        }
+    // MARK: - IBAction
+
+    @IBAction func didTapHomeButton(_ sender: Any) {
+        state = .collapsed
     }
 
     @objc private func collapsedPlayerTapped() {
@@ -233,9 +283,18 @@ class PlayerView: UIView {
         }
     }
 
-    @IBAction func didTapHomeButton(_ sender: Any) {
-        state = .collapsed
+    @objc private func controlsViewTapped() {
+        controllsViewCollapsed.toggle()
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.streamInfoPillTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
+            self.homeButtonTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
+            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -60 : 50
+            self.timerView.isHidden = self.controllsViewCollapsed
+            self.bottomGradientView.isHidden = !self.controllsViewCollapsed
+            self.layoutIfNeeded()
+        }
     }
+
 
     // MARK: State display
 

@@ -13,6 +13,7 @@ class ProductsViewController: UIViewController {
 
     // MARK: IBOutlet
     @IBOutlet weak var tableView: UITableView!
+
     private var playerView: PlayerView?
 
     // MARK: View Lifecycle
