@@ -47,18 +47,26 @@
                     <color key="textColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPk-gT-5Wb">
+                    <rect key="frame" x="16" y="94" width="382" height="1"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="eBO-fG-J5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Thd-oQ-tsK" secondAttribute="bottom" id="6gn-Jt-Uw8"/>
                 <constraint firstItem="Thd-oQ-tsK" firstAttribute="leading" secondItem="bQt-qt-36N" secondAttribute="trailing" constant="12" id="9nR-Jz-Ubp"/>
+                <constraint firstItem="ZPk-gT-5Wb" firstAttribute="top" secondItem="bQt-qt-36N" secondAttribute="bottom" constant="15" id="Clf-Ie-mcf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZPk-gT-5Wb" secondAttribute="trailing" constant="16" id="FB9-BZ-K1F"/>
                 <constraint firstItem="bQt-qt-36N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="Hh0-VW-9uy"/>
                 <constraint firstItem="iFM-7a-QNg" firstAttribute="leading" secondItem="eBO-fG-J5h" secondAttribute="trailing" constant="2" id="I1N-eb-JbG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bQt-qt-36N" secondAttribute="bottom" constant="16" id="PlX-Av-6sG"/>
                 <constraint firstItem="bQt-qt-36N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Sa9-dD-72w"/>
+                <constraint firstItem="ZPk-gT-5Wb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="TxH-eZ-Neh"/>
                 <constraint firstAttribute="trailing" secondItem="Thd-oQ-tsK" secondAttribute="trailing" constant="16" id="Xxf-Xs-dtk"/>
                 <constraint firstItem="eBO-fG-J5h" firstAttribute="leading" secondItem="bQt-qt-36N" secondAttribute="trailing" constant="12" id="awD-ym-J87"/>
+                <constraint firstItem="ZPk-gT-5Wb" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="dFk-LE-nOP"/>
                 <constraint firstItem="Thd-oQ-tsK" firstAttribute="top" secondItem="bQt-qt-36N" secondAttribute="top" constant="2" id="gpn-Kk-htA"/>
                 <constraint firstItem="eBO-fG-J5h" firstAttribute="bottom" secondItem="iFM-7a-QNg" secondAttribute="bottom" id="pLi-rM-Yp9"/>
                 <constraint firstItem="eBO-fG-J5h" firstAttribute="bottom" secondItem="bQt-qt-36N" secondAttribute="bottom" constant="-2" id="peo-tx-bsf"/>
@@ -68,9 +76,10 @@
                 <outlet property="discountLabel" destination="iFM-7a-QNg" id="cA5-2k-BUk"/>
                 <outlet property="priceLabel" destination="eBO-fG-J5h" id="Anw-MS-cmr"/>
                 <outlet property="productImageView" destination="bQt-qt-36N" id="3tu-kv-WzZ"/>
+                <outlet property="separatorLine" destination="ZPk-gT-5Wb" id="Q0j-9L-cKp"/>
                 <outlet property="titleLabel" destination="Thd-oQ-tsK" id="pBO-a3-d9k"/>
             </connections>
-            <point key="canvasLocation" x="139" y="151"/>
+            <point key="canvasLocation" x="137.68115942028987" y="150.33482142857142"/>
         </view>
     </objects>
 </document>

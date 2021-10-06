@@ -12,6 +12,7 @@ class ProductView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var separatorLine: UIView!
 
     func setup(with product: Product, in frame: CGRect) {
         self.frame = frame
@@ -37,5 +38,9 @@ class ProductView: UIView {
 
         setNeedsLayout()
         layoutIfNeeded()
+    }
+
+    func showBottomSeparator(_ isVisible: Bool) {
+        separatorLine.isHidden = !isVisible
     }
 }

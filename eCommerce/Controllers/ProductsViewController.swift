@@ -24,6 +24,7 @@ class ProductsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 30
+        tableView.separatorStyle = .none
 
         loadProducts()
     }
@@ -164,6 +165,7 @@ extension ProductsViewController: UITableViewDataSource {
 
         if let productView = Bundle.main.loadNibNamed("ProductView", owner: self, options: nil)?[0] as? ProductView {
             productView.setup(with: products[indexPath.row], in: cell.bounds)
+            productView.showBottomSeparator(indexPath.row != products.count - 1)
             cell.addSubview(productView)
             cell.layoutSubviews()
         }
