@@ -19,6 +19,7 @@ protocol PlayerViewDelegate {
 class PlayerView: UIView {
     private var ivsView: IVSPlayerView?
     private var currentProduct: Product?
+    private var controllsViewCollapsed: Bool = false
 
     var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
@@ -41,6 +42,8 @@ class PlayerView: UIView {
     @IBOutlet weak var productBuyNowButton: UIButton!
     @IBOutlet weak var productHolderView: UIView!
     @IBOutlet weak var productsPopupBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var homeButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var streamInfoPillTopConstraint: NSLayoutConstraint!
 
     var state: PlayerViewState? {
         didSet {
@@ -145,7 +148,7 @@ class PlayerView: UIView {
     }
 
     private func show(_ product: Product) {
-        guard currentProduct == nil else {
+        guard state != .collapsed, currentProduct != product else {
             return
         }
 
@@ -159,12 +162,12 @@ class PlayerView: UIView {
             self.productPopup.isHidden = false
 
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-                self.productsPopupBottomConstraint.constant = 50
+                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? 50 : -60
                 self.layoutIfNeeded()
             }
             currentProduct = product
         } else {
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
                 self.productsPopupBottomConstraint.constant = -self.productPopup.frame.height
                 self.layoutIfNeeded()
             } completion: { _ in
@@ -213,10 +216,11 @@ class PlayerView: UIView {
     }
 
     @objc private func controlsViewTapped() {
-        // TODO: - toggle topBar
-
+        controllsViewCollapsed.toggle()
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-            self.productsPopupBottomConstraint.constant = self.productsPopupBottomConstraint.constant < 0 ? 50 : -60
+            self.streamInfoPillTopConstraint.constant = self.controllsViewCollapsed ? 8 : -100
+            self.homeButtonTopConstraint.constant = self.controllsViewCollapsed ? 8 : -100
+            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? 50 : -60
             self.layoutIfNeeded()
         }
     }

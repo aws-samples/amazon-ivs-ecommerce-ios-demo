@@ -172,6 +172,7 @@
                 <outlet property="bufferIndicator" destination="a5o-AH-Vy7" id="BX6-wa-KHM"/>
                 <outlet property="controlsView" destination="P8l-yb-Ijp" id="4gA-NU-aOm"/>
                 <outlet property="homeButton" destination="OsY-h4-IGn" id="PIj-uA-Ic9"/>
+                <outlet property="homeButtonTopConstraint" destination="V9b-if-xxI" id="gIL-CJ-36C"/>
                 <outlet property="productAddToCartButton" destination="F6b-ME-dg7" id="jin-oM-Jch"/>
                 <outlet property="productBuyNowButton" destination="fH7-gc-jOG" id="VoX-Id-Vrd"/>
                 <outlet property="productHolderView" destination="TxI-gV-grR" id="XOZ-Ls-W4Z"/>
@@ -179,6 +180,7 @@
                 <outlet property="productsPopupBottomConstraint" destination="rWW-za-a2H" id="EOD-1w-4M6"/>
                 <outlet property="streamInfoPill" destination="FD2-ch-xHc" id="aGo-hK-eWs"/>
                 <outlet property="streamInfoPillImageView" destination="hdC-No-TJ9" id="4sM-0s-iET"/>
+                <outlet property="streamInfoPillTopConstraint" destination="lgd-bM-NJf" id="NXg-4L-0TX"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </view>
