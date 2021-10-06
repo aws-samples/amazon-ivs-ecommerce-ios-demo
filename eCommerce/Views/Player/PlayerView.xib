@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8l-yb-Ijp">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="862"/>
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-h4-IGn">
                             <rect key="frame" x="354" y="8" width="44" height="44"/>
@@ -47,7 +47,7 @@
                             </connections>
                         </button>
                         <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a5o-AH-Vy7">
-                            <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
+                            <rect key="frame" x="188.5" y="412.5" width="37" height="37"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
@@ -98,7 +98,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sg-nB-Zty">
-                            <rect key="frame" x="16" y="671" width="382" height="147"/>
+                            <rect key="frame" x="16" y="715" width="382" height="147"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxI-gV-grR">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
@@ -148,7 +148,7 @@
                             </constraints>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="450-xK-48I">
-                            <rect key="frame" x="132" y="620" width="150.5" height="35"/>
+                            <rect key="frame" x="132" y="664" width="150.5" height="35"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal ends in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-7Y-XCl">
                                     <rect key="frame" x="16" y="8" width="83.5" height="19"/>
@@ -176,7 +176,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-ii-Jzj">
-                            <rect key="frame" x="0.0" y="662" width="414" height="200"/>
+                            <rect key="frame" x="0.0" y="706" width="414" height="200"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="mkw-Du-SE1"/>
@@ -195,6 +195,7 @@
                         <constraint firstAttribute="trailing" secondItem="1Sg-nB-Zty" secondAttribute="trailing" constant="16" id="Kq9-cA-sET"/>
                         <constraint firstItem="OsY-h4-IGn" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="V9b-if-xxI"/>
                         <constraint firstItem="450-xK-48I" firstAttribute="centerX" secondItem="P8l-yb-Ijp" secondAttribute="centerX" id="a1a-05-vNd"/>
+                        <constraint firstAttribute="bottom" secondItem="NHt-ii-Jzj" secondAttribute="bottom" constant="-44" id="cHT-AT-QLA"/>
                         <constraint firstItem="FD2-ch-xHc" firstAttribute="top" secondItem="P8l-yb-Ijp" secondAttribute="top" constant="8" id="lgd-bM-NJf"/>
                         <constraint firstItem="a5o-AH-Vy7" firstAttribute="centerY" secondItem="P8l-yb-Ijp" secondAttribute="centerY" id="mpQ-Zk-ZID"/>
                         <constraint firstAttribute="bottom" secondItem="1Sg-nB-Zty" secondAttribute="bottom" id="rWW-za-a2H"/>
@@ -205,10 +206,9 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="topMargin" secondItem="P8l-yb-Ijp" secondAttribute="top" id="AUd-1g-bvf"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P8l-yb-Ijp" secondAttribute="bottom" id="STI-I1-1As"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P8l-yb-Ijp" secondAttribute="bottom" constant="-44" id="STI-I1-1As"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P8l-yb-Ijp" secondAttribute="trailing" id="di0-6i-UxA"/>
                 <constraint firstItem="P8l-yb-Ijp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hbX-tI-a88"/>
-                <constraint firstAttribute="bottomMargin" secondItem="NHt-ii-Jzj" secondAttribute="bottom" constant="-44" id="xWO-m5-NPK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

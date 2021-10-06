@@ -135,9 +135,9 @@ class PlayerView: UIView {
         let gradient = CAGradientLayer()
         gradient.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor
+            UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         ]
-        gradient.locations = [0.0, 1.0]
+        gradient.locations = [0.1, 1.0]
         gradient.frame = bottomGradientView.bounds
         bottomGradientView.layer.insertSublayer(gradient, at: 0)
     }
@@ -189,7 +189,7 @@ class PlayerView: UIView {
             self.timerView.isHidden = self.controllsViewCollapsed
 
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -60 : 50
+                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -30 : 50
                 self.layoutIfNeeded()
             } completion: { _ in
                 self.startCountdown()
@@ -224,7 +224,7 @@ class PlayerView: UIView {
 
     @objc private func timerUpdated() {
         currentSeconds -= 1
-        timerLabel.text = "0:\(currentSeconds)"
+        timerLabel.text = "0:\(currentSeconds < 10 ? "0" : "")\(currentSeconds)"
         if currentSeconds == 0 {
             timerView.isHidden = true
             currentProduct = nil
@@ -288,9 +288,9 @@ class PlayerView: UIView {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
             self.streamInfoPillTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
             self.homeButtonTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
-            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -60 : 50
-            self.timerView.isHidden = self.controllsViewCollapsed
-            self.bottomGradientView.isHidden = !self.controllsViewCollapsed
+            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -30 : 50
+            self.timerView.isHidden = self.controllsViewCollapsed || self.currentProduct == nil
+            self.bottomGradientView.isHidden = !self.controllsViewCollapsed || self.currentProduct == nil
             self.layoutIfNeeded()
         }
     }

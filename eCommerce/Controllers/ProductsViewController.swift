@@ -26,20 +26,11 @@ class ProductsViewController: UIViewController {
         tableView.layer.cornerRadius = 30
 
         loadProducts()
-
-        createPlayerView()
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if #available(iOS 13.0, *) {
-            return .darkContent
-        } else {
-            return .default
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        createPlayerView()
         playerView?.startPlayback()
         playerView?.addApplicationLifecycleObservers()
     }
@@ -75,8 +66,8 @@ class ProductsViewController: UIViewController {
         playerView?.frame = CGRect(x: 0, y: 0, width: 100, height: 205)
         playerView?.expandedSize = tableView.frame
         playerView?.collapsedCenterPosition = CGPoint(
-            x: tableView.bounds.width - (playerView?.frame.width ?? 0) * 0.6,
-            y: tableView.bounds.height - (playerView?.frame.height ?? 0) * 0.5
+            x: tableView.frame.width - (playerView?.frame.width ?? 0) * 0.6,
+            y: tableView.frame.height - (playerView?.frame.height ?? 0) * 0.5
         )
 
         if let playerView = playerView {
@@ -84,12 +75,15 @@ class ProductsViewController: UIViewController {
             view.bringSubviewToFront(playerView)
             playerView.setup()
             playerView.setNeedsLayout()
-            view.layoutSubviews()
         }
 
         playerView?.state = .expanded
         playerView?.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGestureHandler)))
         playerView?.products = products
+
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
+            self.view.layoutSubviews()
+        }
     }
 
     @objc private func panGestureHandler(gesture: UIPanGestureRecognizer) {
