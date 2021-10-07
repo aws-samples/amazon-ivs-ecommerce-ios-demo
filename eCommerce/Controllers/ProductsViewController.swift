@@ -15,6 +15,7 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var playerView: PlayerView?
+    private var headerTitleLabel: UILabel?
 
     // MARK: View Lifecycle
 
@@ -24,7 +25,6 @@ class ProductsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 30
-        tableView.separatorStyle = .none
 
         loadProducts()
     }
@@ -146,8 +146,22 @@ extension ProductsViewController: UITableViewDelegate {
         title.textColor = .white
         title.font = UIFont(name: "AmazonEmber-Bold", size: 24)
         title.text = "All Products"
+        headerTitleLabel = title
         headerView.addSubview(title)
         return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 120
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        var alpha: CGFloat = 1
+        if offset > 70 {
+            alpha = (100 - offset) / 100
+        }
+        headerTitleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: alpha)
     }
 }
 
