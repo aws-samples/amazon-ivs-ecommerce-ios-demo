@@ -28,6 +28,7 @@ class PlayerView: UIView {
     var collapsedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
     var expandedSize = UIScreen.main.bounds
     var products: [Product] = []
+    var receivedProductsLine: [Product] = []
     let jsonDecoder = JSONDecoder()
 
     // MARK: - IBOutlet
@@ -229,6 +230,11 @@ class PlayerView: UIView {
             timerView.isHidden = true
             currentProduct = nil
             timer?.invalidate()
+
+            if let nextProductInLine = receivedProductsLine.first {
+                show(nextProductInLine)
+                receivedProductsLine.remove(at: 0)
+            }
         }
     }
 
@@ -340,7 +346,13 @@ extension PlayerView: IVSPlayer.Delegate {
             do {
                 let json = try jsonDecoder.decode([String: String].self, from: jsonData)
                 if let id = json["productId"], let product = products.first(where: { $0.id == id }) {
-                    show(product)
+                    if receivedProductsLine.last != product {
+                        receivedProductsLine.append(product)
+                    }
+
+                    if receivedProductsLine.count == 1 {
+                        show(product)
+                    }
                 }
             } catch {
                 print("Could not decode productId: \(error)")
