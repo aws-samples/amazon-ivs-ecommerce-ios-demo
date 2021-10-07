@@ -17,19 +17,26 @@ protocol PlayerViewDelegate {
 }
 
 class PlayerView: UIView {
-    private var ivsView: IVSPlayerView?
-    private var currentProduct: Product?
-    private var controllsViewCollapsed: Bool = false
-    private var timer: Timer?
-    private var currentSeconds: Int = 11
-
     var delegate: PlayerViewDelegate?
     var collapsedCenterPosition = CGPoint(x: 0, y: 0)
     var collapsedSize = CGRect(x: 0, y: 0, width: 120, height: 200)
     var expandedSize = UIScreen.main.bounds
     var products: [Product] = []
-    var receivedProductsLine: [Product] = []
-    let jsonDecoder = JSONDecoder()
+
+    private let jsonDecoder = JSONDecoder()
+    private var ivsView: IVSPlayerView?
+    private var currentProduct: Product?
+    private var controlsViewCollapsed: Bool = false
+    private var timer: Timer?
+    private var currentSeconds: Int = 11
+    private var receivedProductsLine: [Product] = [] {
+        didSet {
+            if oldValue.count == 0 && receivedProductsLine.count == 1 {
+                // Start showing the products
+                showNextProductInLine()
+            }
+        }
+    }
 
     // MARK: - IBOutlet
 
@@ -153,14 +160,14 @@ class PlayerView: UIView {
             ivsView?.frame = self.bounds
             ivsView?.layer.cornerRadius = 10
             self.center = collapsedCenterPosition
-            controlsView.isHidden = true
+            toggleControlsView(true)
 
         case .expanded:
             self.frame = expandedSize
             self.layer.cornerRadius = 30
             ivsView?.frame = self.bounds
             ivsView?.layer.cornerRadius = 30
-            showControlsView()
+            toggleControlsView(false)
 
         case .none:
             break
@@ -170,8 +177,21 @@ class PlayerView: UIView {
         layoutIfNeeded()
     }
 
-    private func showControlsView() {
-        controlsView.isHidden = false
+    private func toggleControlsView(_ hide: Bool? = nil) {
+        if let hide = hide {
+            controlsView.isHidden = hide
+        } else {
+            controlsView.isHidden.toggle()
+        }
+    }
+
+    private func showNextProductInLine() {
+        if let nextProductInLine = receivedProductsLine.first {
+            show(nextProductInLine)
+            if !receivedProductsLine.isEmpty {
+                receivedProductsLine.remove(at: 0)
+            }
+        }
     }
 
     private func show(_ product: Product) {
@@ -187,15 +207,18 @@ class PlayerView: UIView {
                 productHolderView.layoutSubviews()
             }
             self.productPopup.isHidden = false
-            self.timerView.isHidden = self.controllsViewCollapsed
+            self.timerView.isHidden = self.controlsViewCollapsed
 
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-                self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -30 : 50
+                self.productsPopupBottomConstraint.constant = self.controlsViewCollapsed ? -30 : 50
                 self.layoutIfNeeded()
             } completion: { _ in
                 self.startCountdown()
             }
             currentProduct = product
+            if !receivedProductsLine.isEmpty {
+                receivedProductsLine.remove(at: 0)
+            }
         } else {
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
                 self.productsPopupBottomConstraint.constant = -self.productPopup.frame.height
@@ -230,11 +253,7 @@ class PlayerView: UIView {
             timerView.isHidden = true
             currentProduct = nil
             timer?.invalidate()
-
-            if let nextProductInLine = receivedProductsLine.first {
-                show(nextProductInLine)
-                receivedProductsLine.remove(at: 0)
-            }
+            showNextProductInLine()
         }
     }
 
@@ -283,20 +302,22 @@ class PlayerView: UIView {
 
     @objc private func collapsedPlayerTapped() {
         if state == .collapsed {
-            self.state = .expanded
+            state = .expanded
+            showNextProductInLine()
+//            self.timerView.isHidden = false
         } else {
             controlsViewTapped()
         }
     }
 
     @objc private func controlsViewTapped() {
-        controllsViewCollapsed.toggle()
+        controlsViewCollapsed.toggle()
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-            self.streamInfoPillTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
-            self.homeButtonTopConstraint.constant = self.controllsViewCollapsed ? -100 : 8
-            self.productsPopupBottomConstraint.constant = self.controllsViewCollapsed ? -30 : 50
-            self.timerView.isHidden = self.controllsViewCollapsed || self.currentProduct == nil
-            self.bottomGradientView.isHidden = !self.controllsViewCollapsed || self.currentProduct == nil
+            self.streamInfoPillTopConstraint.constant = self.controlsViewCollapsed ? -100 : 8
+            self.homeButtonTopConstraint.constant = self.controlsViewCollapsed ? -100 : 8
+            self.productsPopupBottomConstraint.constant = self.controlsViewCollapsed ? -30 : 50
+            self.timerView.isHidden = self.currentProduct == nil || self.controlsViewCollapsed
+            self.bottomGradientView.isHidden = self.currentProduct == nil || !self.controlsViewCollapsed
             self.layoutIfNeeded()
         }
     }
@@ -348,10 +369,6 @@ extension PlayerView: IVSPlayer.Delegate {
                 if let id = json["productId"], let product = products.first(where: { $0.id == id }) {
                     if receivedProductsLine.last != product {
                         receivedProductsLine.append(product)
-                    }
-
-                    if receivedProductsLine.count == 1 {
-                        show(product)
                     }
                 }
             } catch {
