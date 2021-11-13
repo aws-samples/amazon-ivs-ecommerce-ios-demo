@@ -27,10 +27,7 @@ To run the demo in the iOS Simulator:
 4. Open `eCommerce.xcworkspace` in Xcode.
 5. Click `Run` in the toolbar, or press `Cmd(⌘)-R`
 
-You should see the iOS Simulator boot up and launch the demo app. This may take a few moments to complete. Once the app is launched in the simulator, tap on one of the images in the `LIVE` carousel top open a video. There are both portrait and landscape video examples in the app.
-
-- To view a portrait stream: Tap the leftmost image in the carousel.
-- To view a landscape stream: Tap the second-to-leftmost image in the carousel.
+You should see the iOS Simulator boot up and launch the demo app. This may take a few moments to complete.
 
 ## Modifying this Example
 
@@ -43,41 +40,20 @@ You should see the iOS Simulator boot up and launch the demo app. This may take 
 ### Using your own Live video
 
 1. Open the [Amazon IVS Console](https://console.aws.amazon.com/ivs) and navigate to the channel you would like to use.
-2. Copy the _Playback URL_ for the channel. The URL should end in `.m3u8`. (For example: `https://4da4a22026d3.us-west-2.playback.live-video.net/api/video/v1/us-west-2.298083573632.channel.WbhDQYgfYHoT.m3u8`).
-3. In Xcode, open `eCommerce/ViewControllers/HomeViewController.swift`.
-4. If you are streaming portrait video, replace the string on line `20` with the _Playback URL_ from step 2. For landscape video, replace the string on line `21`.
+2. Copy the _Playback URL_ for the channel. The URL should end in `.m3u8`. (For example: `https://4c62a87c1810.us-west-2.playback.live-video.net/api/video/v1/us-west-2.049054135175.channel.onToXRHIurEP.m3u8`).
+3. In Xcode, open `eCommerce/Constants.swift`.
+4. Replace the string on line `12` with the _Playback URL_ from step 2.
 5. Save and build the application. Navigate to the leftmost image in the `LIVE` carousel to view landscape video, or the second-to-leftmost image to view portrait video.
 
 ### Using your own TimedMetadata events
 
 Amazon IVS TimedMetadata provides a way to embed metadata in an Amazon IVS stream. It ensures that your users receive the metadata at the same time as the video stream, regardless of stream latency or geographic location. Learn how to embed TimedMetadata in stream: [Embedding Metadata within a Video Stream](https://docs.aws.amazon.com/ivs/latest/userguide/SEM.html).
 
-This example expects an array of json that represents each product in the carousel. This approach is not recommended for production applications, given that it requires all product information to be contained in the stream's TimedMetadata. A more scalable approach using product indexes in TimedMetadata and [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) is documented in the [Amazon IVS eCommerce Web Demo](https://github.com/aws-samples/amazon-ivs-ecommerce-web-demo).
+This example expects a `productId` that represents the unique identifier for a project in the `streams.json` file.
 
 ```
 "metadata" : {
-  "products": [
-	{
-	  "id": 0,
-	  "priceDiscount": "$<product-discount-price>",
-	  "priceOriginal": "$<product-original-price>",
-	  "imageUrl": "<product-image-url>",
-	  "name": "<product-name>",
-	  "webLink": "<product-details-url>",
-	  "isFeatured": <BOOL | true if currently on stream, false if not>,
-	  "lastPurchaser": {
-		"username": "<purchaser-name>",
-		"userprofile": "<purchaser-image-url>"
-	  }
-	},
-	{
-	  "id": 1,
-	  "priceDiscount": "$<product-discount-price>",
-	  "priceOriginal": "$<product-original-price>",
-	  ...
-	},
-	...
-  ]
+  "productId": "1000567892"
 }
 ```
 
