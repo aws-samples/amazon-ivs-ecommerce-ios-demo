@@ -187,7 +187,6 @@
 			buildConfigurationList = 4664E34F2481198E00B75A8B /* Build configuration list for PBXNativeTarget "eCommerce" */;
 			buildPhases = (
 				82FFFFD775BD0E61B119FD5F /* [CP] Check Pods Manifest.lock */,
-				880E70AF09A77C09C5A92441 /* [CP] Prepare Artifacts */,
 				4664E3372481198C00B75A8B /* Sources */,
 				4664E3382481198C00B75A8B /* Frameworks */,
 				4664E3392481198C00B75A8B /* Resources */,
@@ -276,23 +275,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		880E70AF09A77C09C5A92441 /* [CP] Prepare Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Prepare Artifacts";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eCommerce/Pods-eCommerce-artifacts.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6A3B8A895ACD01F9D1E3776 /* [CP] Embed Pods Frameworks */ = {
