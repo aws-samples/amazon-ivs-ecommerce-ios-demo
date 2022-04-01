@@ -1,7 +1,7 @@
 platform :ios, '11.0'
 
 target 'eCommerce' do
-    pod 'AmazonIVSPlayer', '~> 1.8.0'
+    pod 'AmazonIVSPlayer', '~> 1.8.1'
 end
 
 # Allow building for arm64e architecture, which AmazonIVSPlayer supports.
@@ -10,4 +10,4 @@ post_install do |installer|
     installer.pods_project.build_configurations.each do |configuration|
         configuration.build_settings['ARCHS[sdk=iphoneos*]'] = ['$(ARCHS_STANDARD)','arm64e']
     end
- end
+end
