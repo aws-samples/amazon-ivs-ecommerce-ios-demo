@@ -1,7 +1,7 @@
 platform :ios, '11.0'
 
 target 'eCommerce' do
-    pod 'AmazonIVSPlayer', '~> 1.17.0'
+    pod 'AmazonIVSPlayer', '~> 1.19.0'
 end
 
 # Allow building for arm64e architecture, which AmazonIVSPlayer supports.
