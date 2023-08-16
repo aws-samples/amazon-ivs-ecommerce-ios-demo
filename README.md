@@ -23,7 +23,7 @@ To run the demo in the iOS Simulator:
 
 1. Clone the project from this repository
 2. Navigate to the project directory using _Terminal_
-3. Run `bundle install`, then `bundle exec pod install`
+3. Run `pod install`
 4. Open `eCommerce.xcworkspace` in Xcode.
 5. Click `Run` in the toolbar, or press `Cmd(⌘)-R`
 
