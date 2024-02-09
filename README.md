@@ -8,7 +8,7 @@ A demo iOS application intended as an educational tool for demonstrating how Ama
 
 This is an iOS application that uses [Amazon IVS TimedMetadata](https://docs.aws.amazon.com/ivs/latest/userguide/SEM.html) to show products. The demo is written in [Swift](https://developer.apple.com/swift/) and showcases how customers can load and play an Amazon IVS stream and display browsable product information using TimedMetadata.
 
-This demo uses a 24/7 [looping stream](https://0e65d5729bda.us-west-2.playback.live-video.net/api/video/v1/us-west-2.484704431806.channel.qeejlweDQUeV.m3u8) which emits a TimedMetadata event every few seconds. These TimedMetadata events describe product information in json format, which is used by the app to show a carousel of products, and to highlight the product being shown on stream.
+This demo uses a 24/7 [looping stream](https://4c62a87c1810.us-west-2.playback.live-video.net/api/video/v1/us-west-2.049054135175.channel.onToXRHIurEP.m3u8) which emits a TimedMetadata event every few seconds. These TimedMetadata events describe product information in json format, which is used by the app to show a carousel of products, and to highlight the product being shown on stream.
 
 ## Getting Started
 
